@@ -1,6 +1,8 @@
 import { Button } from "@/components/Button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 
 const navLinks = [
     { href: "#about", label: "About" },
@@ -29,8 +31,9 @@ export const Navbar = () => {
     return (
         <header className={`fixed top-0 left-0 right-0 transtion-all duration-500 ${isScrolled ? "glass-strong py-3" : "bg-transparent py-5"}  z-50`}>
             <nav className="container mx-auto px-6 flex items-center justify-between">
-                <a href="#" className="text-xl font-bold tracking-tight hover:text-primary">
-                    PM<span className="text-primary">.</span>
+                <a href="#" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold tracking-tight hover:text-primary">
+                    <img src="/favicon.png" className="logo"></img>
+                    {/* SR<span className="text-primary">.</span> */}
                 </a>
 
                 {/* Desktop Nav */}
@@ -44,9 +47,21 @@ export const Navbar = () => {
                     </div>
                 </div>
 
-                {/* CTA Button */}
-                <div className="hidden md:block">
-                    <Button className="cursor-pointer" size="sm">Contact Me</Button>
+                {/* Social Links */}
+                <div className="hidden md:flex items-center gap-4">
+                    <span className="text-sm text-muted-foreground">Follow Me: </span>
+                    {[
+                        { icon: FaGithub, href: "https://github.com/ShaneRhyder" },
+                        { icon: FaLinkedin, href: "https://www.linkedin.com/in/shane-rhyder-silverio-b06b853a9" },
+                    ].map((social, idx) => (
+                        <a
+                            key={idx}
+                            href={social.href}
+                            className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transtion-all duration-300"
+                        >
+                            {<social.icon className="w-5 h-5" />}
+                        </a>
+                    ))}
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -66,13 +81,29 @@ export const Navbar = () => {
                             <a
                                 href={link.href}
                                 key={index}
+                                onClick={() => setIsMobileMenuOpen(false)}
                                 className="text-lg text-muted-foreground hover:text-foreground py-2"
                             >
                                 {link.label}
                             </a>
                         ))}
 
-                        <Button className="cursor-pointer">Contact Me</Button>
+                        {/* Social Links */}
+                        <div className="flex items-center gap-4">
+                            <span className="text-sm text-muted-foreground">Follow Me: </span>
+                            {[
+                                { icon: FaGithub, href: "https://github.com/ShaneRhyder" },
+                                { icon: FaLinkedin, href: "https://www.linkedin.com/in/shane-rhyder-silverio-b06b853a9" },
+                            ].map((social, idx) => (
+                                <a
+                                    key={idx}
+                                    href={social.href}
+                                    className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transtion-all duration-300"
+                                >
+                                    {<social.icon className="w-5 h-5" />}
+                                </a>
+                            ))}
+                        </div>
                     </div>
                 </div>)}
         </header>

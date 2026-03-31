@@ -1,6 +1,7 @@
 import { Button } from '@/components/Button';
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Mail, Phone } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useState } from 'react';
 
 const skills = [
     "SQL",
@@ -16,6 +17,7 @@ const skills = [
 ];
 
 export const Hero = () => {
+    const [isContactOpen, setIsContactOpen] = useState(false);
     return (
         <section className="relative min-h-screen flex items-center overflow-hidden">
             {/* Bg */}
@@ -27,14 +29,14 @@ export const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
             </div>
 
-            {/* Green Dots */}
+            {/* Dots */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[...Array(15)].map((_, i) => (
                     <div
                         key={i}
                         className="absolute w-1.5 h-1.5 rounded-full opacity-60"
                         style={{
-                            backgroundColor: "#bea0f9",
+                            backgroundColor: "var(--color-primary)",
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
                             animation: `slow-drift ${15 + Math.random() * 20}s ease-in-out infinite`,
@@ -67,25 +69,50 @@ export const Hero = () => {
                                 </span>
                             </h1>
                             <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-300">
-                                Hard-working fourth-year BSIT student with a strong academic record,
-                                consistently earning President’s List honors for five semesters. I have
-                                hands-on experience in web development and using GitHub through
-                                both schoolwork and personal projects. I’m eager to apply what I’ve
-                                learned, gain real-world experience, and contribute in a professional IT
-                                environment.
+                                I’m <span className="font-semibold text-primary">Shane Rhyder Silverio</span>. I build web projects that focus on clean structure, usability,
+                                and real-world function, always aiming to improve with every project.
                             </p>
                         </div>
 
                         {/* CTAs */}
                         <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-400">
-                            <Button size="lg">
+                            <Button
+                                size="lg"
+                                className={`cursor-pointer ${isContactOpen ? "hidden" : "animate-fade-in"}`}
+                                onClick={() => setIsContactOpen((prev) => !prev)}>
                                 Contact Me <ArrowRight className="w-5 h-5" />
+                            </Button>
+
+                             <Button
+                                size="lg"
+                                className={`cursor-pointer ${isContactOpen ? "animate-fade-in" : "hidden"}`}
+                                onClick={() => setIsContactOpen((prev) => !prev)}>
+                                Contact Me:
                             </Button>
                         </div>
 
+                        {/* Contact Information */}
+                        {isContactOpen && (
+                            <div className="glass-strong animate-fade-in rounded-2xl">
+                                <div className="container mx-auto p-3 flex flex-col">
+                                    <div className="text-lg text-muted-foreground">
+                                        <div className="flex items-center gap-2">
+                                            <Mail className="w-5 h-5 text-primary" />
+                                            <span>Email: shanekane567@gmail.com</span>
+                                        </div>
+
+                                        <div className="flex items-center gap-2">
+                                            <Phone className="w-5 h-5 text-primary" />
+                                            <span>Phone: +63 908 987 3691 </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>)}
+
+
                         {/* Social Links */}
                         <div className="flex items-center gap-4 animate-fade-in animation-delay-500">
-                            <span className="text-sm text-muted-foreground">Follow: </span>
+                            <span className="text-sm text-muted-foreground">Follow Me: </span>
                             {[
                                 { icon: FaGithub, href: "https://github.com/ShaneRhyder" },
                                 { icon: FaLinkedin, href: "https://www.linkedin.com/in/shane-rhyder-silverio-b06b853a9" },
@@ -134,7 +161,7 @@ export const Hero = () => {
                 {/* Skills */}
                 <div className="mt-20 animate-fade-in animation-delay-800">
                     <p className="text-sm text-muted-foreground mb-6 text-center">
-                        Technologies I work with
+                        Technologies I work with:
                     </p>
                     <div className="relative overflow-hidden">
                         <div className="flex animate-marquee">

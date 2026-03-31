@@ -5,9 +5,9 @@ import {
     SiJavascript,
     SiPostman,
     SiXampp
-} from "react-icons/si"; // Simple Icons for tech logos
-import { DiJava } from "react-icons/di"; // Devicons for Java
-import { FaCode } from "react-icons/fa"; // Font Awesome generic code icon for C++
+} from "react-icons/si";
+import { DiJava } from "react-icons/di";
+import { FaCode } from "react-icons/fa";
 import { ChevronDown } from "lucide-react";
 
 export const Skills = () => {
